@@ -9,3 +9,5 @@ Una vez descargado, se puede revisar el WMS en la sigueinte ruta directamente en
 C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\wms\libs\geoext3-master\examples\tree\tree-legend-simple.html
 
 adjunto tambien el archivo de la base de datos en Postgres que contiene los diferentes layers utilizados. 
+
+Para poder verlo de manera mas practica, adjunto el enlace al video de demostración: https://youtu.be/5Dsa_rbAaNY
