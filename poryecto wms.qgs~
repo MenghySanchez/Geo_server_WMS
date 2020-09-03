@@ -5,7 +5,7 @@
   <evaluateDefaultValues active="0"/>
   <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
     <customproperties/>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="faro_p20200819163345224" source="E:\pucese2020\SIG\ATACAMES_8417S\faro_p.shp" name="faro_p">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="faro_p20200819163345224" source="E:\pucese2020\SIG\ATACAMES_8417S\faro_p.shp" name="faro_p">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="linea_transmision_electrica_l20200819163345284" source="E:\pucese2020\SIG\ATACAMES_8417S\linea_transmision_electrica_l.shp" name="linea_transmision_electrica_l">
@@ -85,10 +85,10 @@
   <mapcanvas>
     <units>meters</units>
     <extent>
-      <xmin>627017.6434891102835536</xmin>
-      <ymin>10092124.10271179117262363</ymin>
-      <xmax>627039.35744245629757643</xmax>
-      <ymax>10102389.63740419782698154</ymax>
+      <xmin>628797.94208205444738269</xmin>
+      <ymin>10091387.64825787395238876</ymin>
+      <xmax>628819.65603540046140552</xmax>
+      <ymax>10101653.18295028060674667</ymax>
     </extent>
     <rotation>0</rotation>
     <projections>1</projections>
@@ -163,9 +163,9 @@
     </custom-order>
   </layer-tree-canvas>
   <legend updateDrawingOrder="true">
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="faro_p" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="faro_p" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="faro_p20200819163345224" visible="0"/>
+        <legendlayerfile isInOverview="0" layerid="faro_p20200819163345224" visible="1"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="linea_transmision_electrica_l" showFeatureCount="0">
@@ -6024,9 +6024,9 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/dist" value="0"/>
         <property key="labeling/distInMapUnits" value="false"/>
         <property key="labeling/distMapUnitScale" value="0,0,0,0,0,0"/>
-        <property key="labeling/drawLabels" value="true"/>
-        <property key="labeling/enabled" value="true"/>
-        <property key="labeling/fieldName" value="DPA_DESPRO"/>
+        <property key="labeling/drawLabels" value="false"/>
+        <property key="labeling/enabled" value="false"/>
+        <property key="labeling/fieldName" value=""/>
         <property key="labeling/fitInPolygonOnly" value="false"/>
         <property key="labeling/fontCapitals" value="0"/>
         <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
@@ -6043,7 +6043,7 @@ def my_form_open(dialog, layer, feature):
         <property key="labeling/fontWeight" value="50"/>
         <property key="labeling/fontWordSpacing" value="0"/>
         <property key="labeling/formatNumbers" value="false"/>
-        <property key="labeling/isExpression" value="false"/>
+        <property key="labeling/isExpression" value="true"/>
         <property key="labeling/labelOffsetInMapUnits" value="true"/>
         <property key="labeling/labelOffsetMapUnitScale" value="0,0,0,0,0,0"/>
         <property key="labeling/labelPerPart" value="false"/>

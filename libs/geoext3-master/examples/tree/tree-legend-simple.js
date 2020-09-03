@@ -1,7 +1,11 @@
 Ext.require([
     'GeoExt.component.Map',
-    'GeoExt.data.store.LayersTree'
+    'GeoExt.data.store.LayersTree',
+    'Ext.Viewport'
 ]);
+Ext.Loader.loadScript({
+    url: '../../classic/form/field/GeocoderComboBox.js'
+});
 
 /**
  * A plugin for Ext.grid.column.Column s that overwrites the internal cellTpl to
@@ -50,7 +54,7 @@ Ext.define('BasicTreeColumnLegends', {
             var legendUrl = layer.get('legendUrl');
             if (!legendUrl) {
                 legendUrl = 'https://geoext.github.io/geoext2/' +
-                    'website-resources/img/GeoExt-logo.png';
+                    'website-resources/img/GeoExt-logo.png'    ;
             }
             return '<img class="legend" src="' + legendUrl + '" height="32" />';
         }
@@ -149,7 +153,8 @@ Ext.application({
             legendUrl: 'https://stamen-tiles-d.a.ssl.fastly.net/' +
                 'watercolor/2/1/0.jpg',
             source: source1,
-            name: 'Relleno de oceanos y continentes'
+            name: 'Relleno de oceanos y continentes',
+            visible: false
         });
 
         source2 = new ol.source.Stamen({layer: 'terrain-labels'});
@@ -157,7 +162,8 @@ Ext.application({
             legendUrl: 'https://stamen-tiles-b.a.ssl.fastly.net/' +
                 'terrain-labels/4/4/6.png',
             source: source2,
-            name: 'Nombres de Paises y Provincias y Cantones'
+            name: 'Nombres de Paises y Provincias y Cantones',
+            visible: false
         });
 
         source3 = new ol.source.TileWMS({
@@ -583,7 +589,12 @@ Ext.application({
 
 
         group = new ol.layer.Group({
-            layers: [layer1, layer2],
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                   , name: 'Mapa Base'
+                })
+                ,layer1, layer2],
             name: 'Componentes mapa base'
         });
 
@@ -612,8 +623,11 @@ Ext.application({
             name: 'Componentes estructural'
         });
 
+
+
         olMap = new ol.Map({
-            layers: [group,groupR,groupT,groupP,groupA,groupE],
+            layers: [group,groupR,groupT,groupP,groupA,groupE               
+            ],
             view: new ol.View({
                 center: [-8886888, 98000],
                 zoom: 14
@@ -628,15 +642,42 @@ Ext.application({
             region: 'center',
             layout: 'fit',
             border: false,
-            items: [mapComponent]
+            items: [mapComponent],
+            tbar: [{
+                xtype: 'gx_geocoder_combo',
+                width: 300,
+                url: 'https://nominatim.openstreetmap.org/search?format=json', /* esta dirección no esta disponible */
+                map: olMap,
+                showLocationOnMap: true,
+                locationLayerStyle: new ol.style.Style({
+                    stroke: new ol.style.Stroke({
+                        color: 'blue'
+                    })
+                })
+            }, {
+                xtype: 'checkboxfield',
+                boxLabel: 'Restringir a la extensión del mapa',
+                listeners: {
+                    'change': function(cb, val) {
+                        var combo = cb.up().down('gx_geocoder_combo');
+                        if (combo) {
+                            var evtName = val ?
+                                'restrictToMapExtent' :
+                                'unRestrictMapExtent';
+                            combo.fireEvent(evtName);
+                        }
+                    }
+                }
+            }]
+
         });
 
         treeStore = Ext.create('GeoExt.data.store.LayersTree', {
             layerGroup: olMap.getLayerGroup()
         });
-/*
+
         treePanel = Ext.create('Ext.tree.Panel', {
-            title: 'Legends in tree panel',
+            title: 'Arbol de Capas',
             store: treeStore,
             border: false,
             rootVisible: false,
@@ -659,7 +700,7 @@ Ext.application({
                 ]
             }
         });
-*/
+/*
         treeStore2 = Ext.create('GeoExt.data.store.LayersTree', {
             layerGroup: olMap.getLayerGroup()
         });
@@ -700,7 +741,7 @@ Ext.application({
                 }
             }]
         });
-
+*/
         var description = Ext.create('Ext.panel.Panel', {
             contentEl: 'description',
             title: 'Description',
@@ -724,7 +765,7 @@ Ext.application({
                     items: [
                         treePanel,
                         description,
-                        treePanel2
+                       /* treePanel2*/
                     ]
                 }
             ]
